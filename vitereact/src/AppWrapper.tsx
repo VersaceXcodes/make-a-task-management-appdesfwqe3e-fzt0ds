@@ -1,8 +1,8 @@
 import React from "react";
-import App from "./App.tsx";
+import App from "./App";
 // Removed imports from _cofounder/dev
-// import FirstLaunch from "@/_cofounder/dev/firstlaunch.tsx";
-// import Cmdl from "@/_cofounder/dev/cmdl.tsx";
+// import FirstLaunch from "@/_cofounder/dev/firstlaunch";
+// import Cmdl from "@/_cofounder/dev/cmdl";
 
 const AppWrapper: React.FC = () => {
 	return (
