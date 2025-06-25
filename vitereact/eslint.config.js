@@ -7,7 +7,7 @@ import tseslint from "typescript-eslint";
 export default tseslint.config({
 	extends: [js.configs.recommended, ...tseslint.configs.recommended],
 	files: ["**/*.{ts,tsx}"],
-	ignores: ["dist", "public"],
+	ignores: ["dist"],
 	languageOptions: {
 		ecmaVersion: 2020,
 		globals: globals.browser,
@@ -22,9 +22,5 @@ export default tseslint.config({
 			"warn",
 			{ allowConstantExport: true },
 		],
-		// Adding rules to make eslint less strict for deployment
-		"no-unused-vars": "off",
-		"@typescript-eslint/no-unused-vars": "warn",
-		"@typescript-eslint/no-explicit-any": "off",
 	},
 });

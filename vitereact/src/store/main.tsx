@@ -14,7 +14,7 @@ let api_client: AxiosInstance;
 let global_socket_instance: Socket | null = null;
 
 // --- Helper for Snackbar Auto-Dismiss ---
-let snackbar_timeout_id: ReturnType<typeof setTimeout> | null = null;
+let snackbar_timeout_id: NodeJS.Timeout | null = null;
 const SNACKBAR_DISPLAY_DURATION = 5000; // 5 seconds
 
 // --- Type Definitions (from app:architecture and OpenAPI) ---
@@ -91,17 +91,6 @@ export interface SnackbarMessage {
   id: string; // Unique ID for keying multiple messages if queued
 }
 
-// Confirmation Modal Type
-export interface ConfirmationModalState {
-  is_modal_open: boolean;
-  modal_title: string;
-  modal_message: string;
-  confirm_input_required: boolean;
-  confirmation_string_expected: string;
-  on_confirm_callback: ((data: object) => Promise<void> | void) | null;
-  data_for_callback: object;
-}
-
 // Global App Store State
 export interface AppStoreState {
   authenticated_user: UserResponse | null;
@@ -110,7 +99,6 @@ export interface AppStoreState {
   global_notifications: NotificationsResponse;
   current_snackbar_message: SnackbarMessage | null;
   global_loading_indicator: boolean;
-  confirmation_modal: ConfirmationModalState;
 }
 
 // Global App Store Actions
@@ -123,17 +111,6 @@ export interface AppStoreActions {
   set_global_loading: (status: boolean) => void;
   add_snackbar_message: (type: SnackbarMessage['type'], message: string) => void;
   clear_snackbar_message: () => void;
-
-  // Confirmation Modal Management
-  open_confirmation_modal: (
-    title: string,
-    message: string,
-    callback: (data: object) => Promise<void> | void,
-    callbackData?: object,
-    requireInputConfirmation?: boolean,
-    confirmationString?: string
-  ) => void;
-  close_confirmation_modal: () => void;
 
   // Project Data Management
   fetch_my_projects: () => Promise<void>;
@@ -176,15 +153,6 @@ export const useAppStore = create<AppStore>()(
         global_notifications: { unread_count: 0, notifications: [] },
         current_snackbar_message: null,
         global_loading_indicator: false,
-        confirmation_modal: {
-          is_modal_open: false,
-          modal_title: '',
-          modal_message: '',
-          confirm_input_required: false,
-          confirmation_string_expected: '',
-          on_confirm_callback: null,
-          data_for_callback: {},
-        },
 
         // --- (Internal) Initialize/Configure Axios and Socket.IO ---
         // This function manages the Axios default header and the Socket.IO connection lifecycle.
@@ -434,43 +402,6 @@ export const useAppStore = create<AppStore>()(
             console.error('Failed to mark all notifications as read:', error);
             get().add_snackbar_message('error', 'Failed to mark all notifications as read.');
           }
-        },
-
-        // Opens the confirmation modal with provided options
-        open_confirmation_modal: (
-          title, 
-          message, 
-          callback, 
-          callbackData = {}, 
-          requireInputConfirmation = false, 
-          confirmationString = 'confirm'
-        ) => {
-          set({
-            confirmation_modal: {
-              is_modal_open: true,
-              modal_title: title,
-              modal_message: message,
-              confirm_input_required: requireInputConfirmation,
-              confirmation_string_expected: confirmationString,
-              on_confirm_callback: callback,
-              data_for_callback: callbackData,
-            }
-          });
-        },
-
-        // Closes the confirmation modal
-        close_confirmation_modal: () => {
-          set({
-            confirmation_modal: {
-              is_modal_open: false,
-              modal_title: '',
-              modal_message: '',
-              confirm_input_required: false,
-              confirmation_string_expected: '',
-              on_confirm_callback: null,
-              data_for_callback: {},
-            }
-          });
         },
       };
     },

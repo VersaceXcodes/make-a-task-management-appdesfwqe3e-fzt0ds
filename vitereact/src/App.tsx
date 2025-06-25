@@ -1,34 +1,34 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate, Outlet, useLocation, useParams } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useAppStore } from './store/main';
+import { useAppStore } from '@/store/main';
 
 // Import Global Views
-import GV_TopNavigation from './components/views/GV_TopNavigation';
-import GV_LeftSidebar from './components/views/GV_LeftSidebar';
-import GV_ProjectSubNavigation from './components/views/GV_ProjectSubNavigation';
+import GV_TopNavigation from '@/components/views/GV_TopNavigation.tsx';
+import GV_LeftSidebar from '@/components/views/GV_LeftSidebar.tsx';
+import GV_ProjectSubNavigation from '@/components/views/GV_ProjectSubNavigation.tsx';
 // Assuming GV_GlobalNotificationsPanel is managed by GV_TopNavigation or a portal outside App.tsx logic
-import GV_GlobalConfirmationModal from './components/views/GV_GlobalConfirmationModal';
-import GV_GlobalSnackBarNotifications from './components/views/GV_GlobalSnackBarNotifications';
+import GV_GlobalConfirmationModal from '@/components/views/GV_GlobalConfirmationModal.tsx';
+import GV_GlobalSnackBarNotifications from '@/components/views/GV_GlobalSnackBarNotifications.tsx';
 
 // Import Unique Views
-import UV_Login from './components/views/UV_Login';
-import UV_Register from './components/views/UV_Register';
-import UV_ForgotPasswordRequest from './components/views/UV_ForgotPasswordRequest';
-import UV_ResetPassword from './components/views/UV_ResetPassword';
-import UV_EmailVerificationSuccess from './components/views/UV_EmailVerificationSuccess';
-import UV_EmailVerificationFailed from './components/views/UV_EmailVerificationFailed';
-import UV_MyProjectsDashboard from './components/views/UV_MyProjectsDashboard';
-import UV_UserProfile from './components/views/UV_UserProfile';
-import UV_MyWorkDashboard from './components/views/UV_MyWorkDashboard';
-import UV_GlobalSearchResults from './components/views/UV_GlobalSearchResults';
-import UV_ProjectCreation from './components/views/UV_ProjectCreation';
-import UV_ProjectBoard from './components/views/UV_ProjectBoard';
-import UV_ProjectIssuesList from './components/views/UV_ProjectIssuesList';
-import UV_ProjectSettingsDetails from './components/views/UV_ProjectSettingsDetails';
-import UV_ProjectSettingsMembers from './components/views/UV_ProjectSettingsMembers';
-import UV_IssueCreation from './components/views/UV_IssueCreation';
-import UV_IssueDetails from './components/views/UV_IssueDetails';
+import UV_Login from '@/components/views/UV_Login.tsx';
+import UV_Register from '@/components/views/UV_Register.tsx';
+import UV_ForgotPasswordRequest from '@/components/views/UV_ForgotPasswordRequest.tsx';
+import UV_ResetPassword from '@/components/views/UV_ResetPassword.tsx';
+import UV_EmailVerificationSuccess from '@/components/views/UV_EmailVerificationSuccess.tsx';
+import UV_EmailVerificationFailed from '@/components/views/UV_EmailVerificationFailed.tsx';
+import UV_MyProjectsDashboard from '@/components/views/UV_MyProjectsDashboard.tsx';
+import UV_UserProfile from '@/components/views/UV_UserProfile.tsx';
+import UV_MyWorkDashboard from '@/components/views/UV_MyWorkDashboard.tsx';
+import UV_GlobalSearchResults from '@/components/views/UV_GlobalSearchResults.tsx';
+import UV_ProjectCreation from '@/components/views/UV_ProjectCreation.tsx';
+import UV_ProjectBoard from '@/components/views/UV_ProjectBoard.tsx';
+import UV_ProjectIssuesList from '@/components/views/UV_ProjectIssuesList.tsx';
+import UV_ProjectSettingsDetails from '@/components/views/UV_ProjectSettingsDetails.tsx';
+import UV_ProjectSettingsMembers from '@/components/views/UV_ProjectSettingsMembers.tsx';
+import UV_IssueCreation from '@/components/views/UV_IssueCreation.tsx';
+import UV_IssueDetails from '@/components/views/UV_IssueDetails.tsx';
 
 // Initialize React Query client
 const queryClient = new QueryClient({
@@ -87,14 +87,14 @@ class ErrorBoundary extends React.Component<React.PropsWithChildren, { hasError:
  * A wrapper component for routes that require authentication.
  * If the user is not authenticated, it redirects them to the login page.
  */
-const ProtectedRoute: React.FC<{ children?: React.ReactNode }> = () => {
-  const { authenticated_user } = useAppStore();
-  // Assuming authenticated_user is synchronously available or null when not authenticated
-  // If it's undefined during initial loading, you might need a loading state here.
-  if (authenticated_user === undefined) { // Or if loading, show a spinner
-    return <div>Loading authentication...</div>; // Or return null/a loading spinner appropriately
-  }
-  return authenticated_user ? <Outlet /> : <Navigate to="/login" replace />;
+const ProtectedRoute: React.FC = () => {
+    const { authenticated_user } = useAppStore();
+    // Assuming authenticated_user is synchronously available or null when not authenticated
+    // If it's undefined during initial loading, you might need a loading state here.
+    if (authenticated_user === undefined) { // Or if loading, show a spinner
+        return <div>Loading authentication...</div>; // Or return null/a loading spinner appropriately
+    }
+    return authenticated_user ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 /**

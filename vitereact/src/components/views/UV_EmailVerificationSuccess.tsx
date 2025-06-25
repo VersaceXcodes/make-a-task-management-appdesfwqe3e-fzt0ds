@@ -1,34 +1,32 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * UV_EmailVerificationSuccess Component
+ * Displays a success message after a user's email has been successfully verified.
+ * Provides a link to navigate back to the login page.
+ */
 const UV_EmailVerificationSuccess: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-gray-50">
-      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <div className="flex justify-center">
-          <div className="h-20 w-20 rounded-full bg-green-100 flex items-center justify-center">
-            <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+      <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+        <div className="text-green-500 mb-4">
+          <svg className="mx-auto h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
         </div>
-        <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Email Verified Successfully
-        </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Your email has been successfully verified. You can now proceed to sign in.
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-4">
+          Verification Successful!
+        </h1>
+        <p className="text-gray-700 mb-6 text-lg">
+          Your email has been successfully verified.
         </p>
-      </div>
-
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <div className="flex justify-center">
-          <Link 
-            to="/login" 
-            className="rounded-md bg-blue-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          >
-            Sign in
-          </Link>
-        </div>
+        <p className="text-gray-600 mb-8">
+          You can now log in to your AetherFlow account to start managing your tasks.
+        </p>
+        <Link to="/login" className="w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition ease-in-out duration-150">
+          Go to Login
+        </Link>
       </div>
     </div>
   );
