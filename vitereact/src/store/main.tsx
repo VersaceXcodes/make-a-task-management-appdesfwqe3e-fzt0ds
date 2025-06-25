@@ -14,7 +14,7 @@ let api_client: AxiosInstance;
 let global_socket_instance: Socket | null = null;
 
 // --- Helper for Snackbar Auto-Dismiss ---
-let snackbar_timeout_id: ReturnType<typeof setTimeout> | null = null;
+let snackbar_timeout_id: NodeJS.Timeout | null = null;
 const SNACKBAR_DISPLAY_DURATION = 5000; // 5 seconds
 
 // --- Type Definitions (from app:architecture and OpenAPI) ---
