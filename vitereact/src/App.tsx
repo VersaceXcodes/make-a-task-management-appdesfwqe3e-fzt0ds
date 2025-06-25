@@ -87,14 +87,14 @@ class ErrorBoundary extends React.Component<React.PropsWithChildren, { hasError:
  * A wrapper component for routes that require authentication.
  * If the user is not authenticated, it redirects them to the login page.
  */
-const ProtectedRoute: React.FC = () => {
-    const { authenticated_user } = useAppStore();
-    // Assuming authenticated_user is synchronously available or null when not authenticated
-    // If it's undefined during initial loading, you might need a loading state here.
-    if (authenticated_user === undefined) { // Or if loading, show a spinner
-        return <div>Loading authentication...</div>; // Or return null/a loading spinner appropriately
-    }
-    return authenticated_user ? <Outlet /> : <Navigate to="/login" replace />;
+const ProtectedRoute: React.FC<{ children?: React.ReactNode }> = () => {
+  const { authenticated_user } = useAppStore();
+  // Assuming authenticated_user is synchronously available or null when not authenticated
+  // If it's undefined during initial loading, you might need a loading state here.
+  if (authenticated_user === undefined) { // Or if loading, show a spinner
+    return <div>Loading authentication...</div>; // Or return null/a loading spinner appropriately
+  }
+  return authenticated_user ? <Outlet /> : <Navigate to="/login" replace />;
 };
 
 /**
