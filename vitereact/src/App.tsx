@@ -4,31 +4,31 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAppStore } from './store/main';
 
 // Import Global Views
-import GV_TopNavigation from './components/views/GV_TopNavigation.tsx';
-import GV_LeftSidebar from './components/views/GV_LeftSidebar.tsx';
-import GV_ProjectSubNavigation from './components/views/GV_ProjectSubNavigation.tsx';
+import GV_TopNavigation from './components/views/GV_TopNavigation';
+import GV_LeftSidebar from './components/views/GV_LeftSidebar';
+import GV_ProjectSubNavigation from './components/views/GV_ProjectSubNavigation';
 // Assuming GV_GlobalNotificationsPanel is managed by GV_TopNavigation or a portal outside App.tsx logic
-import GV_GlobalConfirmationModal from './components/views/GV_GlobalConfirmationModal.tsx';
-import GV_GlobalSnackBarNotifications from './components/views/GV_GlobalSnackBarNotifications.tsx';
+import GV_GlobalConfirmationModal from './components/views/GV_GlobalConfirmationModal';
+import GV_GlobalSnackBarNotifications from './components/views/GV_GlobalSnackBarNotifications';
 
 // Import Unique Views
-import UV_Login from './components/views/UV_Login.tsx';
-import UV_Register from './components/views/UV_Register.tsx';
-import UV_ForgotPasswordRequest from './components/views/UV_ForgotPasswordRequest.tsx';
-import UV_ResetPassword from './components/views/UV_ResetPassword.tsx';
-import UV_EmailVerificationSuccess from './components/views/UV_EmailVerificationSuccess.tsx';
-import UV_EmailVerificationFailed from './components/views/UV_EmailVerificationFailed.tsx';
-import UV_MyProjectsDashboard from './components/views/UV_MyProjectsDashboard.tsx';
-import UV_UserProfile from './components/views/UV_UserProfile.tsx';
-import UV_MyWorkDashboard from './components/views/UV_MyWorkDashboard.tsx';
-import UV_GlobalSearchResults from './components/views/UV_GlobalSearchResults.tsx';
-import UV_ProjectCreation from './components/views/UV_ProjectCreation.tsx';
-import UV_ProjectBoard from './components/views/UV_ProjectBoard.tsx';
-import UV_ProjectIssuesList from './components/views/UV_ProjectIssuesList.tsx';
-import UV_ProjectSettingsDetails from './components/views/UV_ProjectSettingsDetails.tsx';
-import UV_ProjectSettingsMembers from './components/views/UV_ProjectSettingsMembers.tsx';
-import UV_IssueCreation from './components/views/UV_IssueCreation.tsx';
-import UV_IssueDetails from './components/views/UV_IssueDetails.tsx';
+import UV_Login from './components/views/UV_Login';
+import UV_Register from './components/views/UV_Register';
+import UV_ForgotPasswordRequest from './components/views/UV_ForgotPasswordRequest';
+import UV_ResetPassword from './components/views/UV_ResetPassword';
+import UV_EmailVerificationSuccess from './components/views/UV_EmailVerificationSuccess';
+import UV_EmailVerificationFailed from './components/views/UV_EmailVerificationFailed';
+import UV_MyProjectsDashboard from './components/views/UV_MyProjectsDashboard';
+import UV_UserProfile from './components/views/UV_UserProfile';
+import UV_MyWorkDashboard from './components/views/UV_MyWorkDashboard';
+import UV_GlobalSearchResults from './components/views/UV_GlobalSearchResults';
+import UV_ProjectCreation from './components/views/UV_ProjectCreation';
+import UV_ProjectBoard from './components/views/UV_ProjectBoard';
+import UV_ProjectIssuesList from './components/views/UV_ProjectIssuesList';
+import UV_ProjectSettingsDetails from './components/views/UV_ProjectSettingsDetails';
+import UV_ProjectSettingsMembers from './components/views/UV_ProjectSettingsMembers';
+import UV_IssueCreation from './components/views/UV_IssueCreation';
+import UV_IssueDetails from './components/views/UV_IssueDetails';
 
 // Initialize React Query client
 const queryClient = new QueryClient({
