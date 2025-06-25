@@ -1,7 +1,7 @@
 // GV_LeftSidebar.tsx
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAppStore } from '@/store/main';
+import { useAppStore } from '../../store/main';
 import {
   FolderIcon,
   Cog6ToothIcon,
